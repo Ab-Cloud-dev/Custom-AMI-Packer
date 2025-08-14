@@ -44,7 +44,7 @@ sudo ufw allow 'Nginx Full' 2>/dev/null || echo "UFW not configured"
 echo "Web application setup complete!"
 ```
 
-### Step 4.2: Update Build Block with File Provisioner
+### Step  2: Update Build Block with File Provisioner
 
 Replace your existing build block with this enhanced version:
 
@@ -78,7 +78,7 @@ build {
 }
 ```
 
-### Step 4.3: Validate and Build
+### Step 3: Validate and Build
 
 Validate the updated template:
 
@@ -86,6 +86,9 @@ Validate the updated template:
 packer fmt aws-ubuntu01.pkr.hcl 
 packer validate aws-ubuntu01.pkr.hcl
 ```
+
+<img width="929" height="380" alt="image" src="https://github.com/user-attachments/assets/fe3bda7c-282f-4b91-895d-1c4bc8b40420" />
+
 
 Build the final AMI with your custom web application:
 
@@ -120,7 +123,7 @@ amazon-ebs.ubuntu: output will be in this color.
 ==> amazon-ebs.ubuntu: Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
 ==> amazon-ebs.ubuntu: Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
 ==> amazon-ebs.ubuntu: Get:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
-==> amazon-ebs.ubuntu: Get:5 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]
+==> amazon-ebs.ubuntu: Get:5 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [1 1 MB]
 ==> amazon-ebs.ubuntu: Get:6 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2558 kB]
 ==> amazon-ebs.ubuntu: Get:7 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [379 kB]
 ==> amazon-ebs.ubuntu: Get:8 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [4018 kB]
@@ -144,7 +147,7 @@ amazon-ebs.ubuntu: output will be in this color.
 ==> amazon-ebs.ubuntu: Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [304 kB]
 ==> amazon-ebs.ubuntu: Get:27 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 c-n-f Metadata [28.7 kB]
 ==> amazon-ebs.ubuntu: Get:28 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [59.5 kB]
-==> amazon-ebs.ubuntu: Get:29 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [14.2 kB]
+==> amazon-ebs.ubuntu: Get:29 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [1 2 kB]
 ==> amazon-ebs.ubuntu: Get:30 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 c-n-f Metadata [592 B]
 ==> amazon-ebs.ubuntu: Get:31 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [68.8 kB]
 ==> amazon-ebs.ubuntu: Get:32 http://archive.ubuntu.com/ubuntu jammy-backports/main Translation-en [11.4 kB]
@@ -235,6 +238,20 @@ Build 'amazon-ebs.ubuntu' finished after 4 minutes 54 seconds.
 us-east-1: ami-075c18447244f490e
 
 </details>
+
+## AMI Details 
+
+<img width="1676" height="798" alt="image" src="https://github.com/user-attachments/assets/27ffb5a2-9cc6-4084-886f-3611e02dc424" />
+
+## Instance Created From the AMI
+
+<img width="1728" height="849" alt="image" src="https://github.com/user-attachments/assets/2e920819-f0f7-43e4-a942-a5343dd4601c" />
+
+## Acessing the Page from Public IP 
+
+<img width="1638" height="875" alt="image" src="https://github.com/user-attachments/assets/c1dcc04c-7bc6-4db3-828c-20642798cb2a" />
+
+
 
 ---
 
