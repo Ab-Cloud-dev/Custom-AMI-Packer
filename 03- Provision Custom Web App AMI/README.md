@@ -101,7 +101,9 @@ packer build packer.pkr.hcl
 ## Complete Template Example
 
 <details>
-<summary>📄 View Complete OUTPUT</summary>
+  <summary>📄 View Complete OUTPUT</summary>
+    <div style="max-height: 200px; overflow-y: scroll;">
+      <ul>
 
 amazon-ebs.ubuntu: output will be in this color.
 
@@ -237,6 +239,8 @@ Build 'amazon-ebs.ubuntu' finished after 4 minutes 54 seconds.
 --> amazon-ebs.ubuntu: AMIs were created:
 us-east-1: ami-075c18447244f490e
 
+   </ul>
+  </div>
 </details>
 
 ## AMI Details 
