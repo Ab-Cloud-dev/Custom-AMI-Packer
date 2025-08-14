@@ -64,7 +64,7 @@ source "amazon-ebs" "ubuntu" {
 The `packer init` command is used to download Packer plugin binaries. This is the first command that should be executed when working with a new or existing template. This command is always safe to run multiple times.
 
 ```shell
-packer init aws-ubuntu.pkr.hcl
+packer init aws-ubuntu.pkr01.hcl
 ```
 
 ### Task 2: Validate the Packer Template
@@ -75,9 +75,10 @@ Packer templates can be auto formatted and validated via the Packer command line
 Format and validate your configuration using the `packer fmt` and `packer validate` commands.
 
 ```shell
-packer fmt aws-ubuntu.pkr.hcl 
-packer validate aws-ubuntu.pkr.hcl
+packer fmt aws-ubuntu01.pkr.hcl 
+packer validate aws-ubuntu01.pkr.hcl
 ```
+<img width="880" height="123" alt="image" src="https://github.com/user-attachments/assets/0cf58a8f-6218-43f5-9f1a-f45e8867e8e6" />
 
 ### Task 3: Create a Builder Block
 Builders are responsible for creating machines and generating images from them for various platforms.  They are use in tandem with the source block within a template.
@@ -104,6 +105,8 @@ export AWS_SECRET_ACCESS_KEY=<your secret key>
 export AWS_DEFAULT_REGION=us-west-2
 ```
 
+
+
 > Example via Powershell:
 
 ```pwsh
@@ -112,55 +115,33 @@ PS C:\> $Env:AWS_SECRET_ACCESS_KEY="<your secret key>"
 PS C:\> $Env:AWS_DEFAULT_REGION="us-west-2"
 ```
 
+<img width="1140" height="187" alt="image" src="https://github.com/user-attachments/assets/4609d923-40bd-4157-a237-a96619ed21d9" />
+
+
+ 
+
+
 ### Step 4.1.1
 Run a `packer build` for the `aws-ubuntu.pkr.hcl` template.
 
 ```shell
-packer build aws-ubuntu.pkr.hcl
+
+packer build aws-ubuntu01.pkr.hcl
+
 ```
 
 Packer will print output similar to what is shown below.
 
-```bash
-amazon-ebs.ubuntu: output will be in this color.
 
-==> amazon-ebs.ubuntu: Prevalidating any provided VPC information
-==> amazon-ebs.ubuntu: Prevalidating AMI Name: packer-ubuntu-aws-1620827902
-    amazon-ebs.ubuntu: Found Image ID: ami-0dd273d94ed0540c0
-==> amazon-ebs.ubuntu: Creating temporary keypair: packer_609bdefe-f179-a11c-3bfd-6f4deda66c99
-==> amazon-ebs.ubuntu: Creating temporary security group for this instance: packer_609bdf00-c182-00a1-e516-32aea832ff9e
-==> amazon-ebs.ubuntu: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
-==> amazon-ebs.ubuntu: Launching a source AWS instance...
-==> amazon-ebs.ubuntu: Adding tags to source instance
-    amazon-ebs.ubuntu: Adding tag: "Name": "Packer Builder"
-    amazon-ebs.ubuntu: Instance ID: i-0c9a0b1b896b8c95a
-==> amazon-ebs.ubuntu: Waiting for instance (i-0c9a0b1b896b8c95a) to become ready...
-==> amazon-ebs.ubuntu: Using ssh communicator to connect: 34.219.135.12
-==> amazon-ebs.ubuntu: Waiting for SSH to become available...
-==> amazon-ebs.ubuntu: Connected to SSH!
-==> amazon-ebs.ubuntu: Stopping the source instance...
-    amazon-ebs.ubuntu: Stopping instance
-==> amazon-ebs.ubuntu: Waiting for the instance to stop...
-==> amazon-ebs.ubuntu: Creating AMI packer-ubuntu-aws-1620827902 from instance i-0c9a0b1b896b8c95a
-    amazon-ebs.ubuntu: AMI: ami-0561bdc79bbb8f5a0
-==> amazon-ebs.ubuntu: Waiting for AMI to become ready...
-==> amazon-ebs.ubuntu: Terminating the source AWS instance...
-==> amazon-ebs.ubuntu: Cleaning up any extra volumes...
-==> amazon-ebs.ubuntu: No volumes to clean up, skipping
-==> amazon-ebs.ubuntu: Deleting temporary security group...
-==> amazon-ebs.ubuntu: Deleting temporary keypair...
-Build 'amazon-ebs.ubuntu' finished after 3 minutes 16 seconds.
+<img width="1001" height="744" alt="image" src="https://github.com/user-attachments/assets/4fab8f33-8741-4586-acc6-461d998dda98" />
 
-==> Wait completed after 3 minutes 16 seconds
 
-==> Builds finished. The artifacts of successful builds are:
---> amazon-ebs.ubuntu: AMIs were created:
-us-west-2: ami-0561bdc79bbb8f5a0
-```
+
 
 **Note:** This lab assumes you have the default VPC available in your account. If you do not, you will need to add the [`vpc_id`](https://www.packer.io/docs/builders/amazon/ebs#vpc_id) and [`subnet_id`](https://www.packer.io/docs/builders/amazon/ebs#subnet_id). The subnet will need to have public access and a valid route to an Internet Gateway.
 
 ##### Resources
 * Packer [Docs](https://www.packer.io/docs/index.html)
 * Packer [CLI](https://www.packer.io/docs/commands/index.html)
+
 
