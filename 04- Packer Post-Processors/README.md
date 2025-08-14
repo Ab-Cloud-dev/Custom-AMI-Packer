@@ -74,60 +74,59 @@ Add the manifest post-processor to your `aws-ubuntu01.pkr.hcl` file:
 packer {
   required_plugins {
     amazon = {
-      source  = "github.com/hashicorp/amazon"
-      version = "~> 1"
+      version = ">= 1.2.8" // Require Amazon plugin version 1.2.8 or higher
+      source  = "github.com/hashicorp/amazon" // Plugin source location
     }
   }
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "packer-ubuntu-aws-{{timestamp}}"
-  instance_type = "t3.micro"
-  region        = "us-west-2"
-  ami_regions   = ["us-west-2", "us-east-1", "eu-central-1"]
-  
+  ami_name      = "packer-ubuntu-aws-{{timestamp}}" // Name of the new AMI, with a timestamp for uniqueness
+  instance_type = "t3.micro"                        // EC2 instance type used for building the AMI
+  region        = "us-east-1"                       // Primary AWS region for building the AMI
+
   source_ami_filter {
     filters = {
-      name                = "ubuntu/images/*ubuntu-jammy-22.04-amd64-server-*"
-      root-device-type    = "ebs"
-      virtualization-type = "hvm"
+      name                = "ubuntu/images/*ubuntu-jammy-22.04-amd64-server-*" // Filter for Ubuntu 22.04 LTS images
+      root-device-type    = "ebs"                                              // Only EBS-backed images
+      virtualization-type = "hvm"                                              // Only HVM virtualization
     }
-    most_recent = true
-    owners      = ["099720109477"]
+    most_recent = true                 // Use the most recent image that matches the filter
+    owners      = ["099720109477"]     // Canonical's AWS account ID (official Ubuntu images)
   }
-  
-  ssh_username = "ubuntu"
-  
+
+  ssh_username = "ubuntu" // Default SSH username for Ubuntu AMIs
+
   tags = {
-    "Name"        = "MyUbuntuImage"
-    "Environment" = "Production"
-    "OS_Version"  = "Ubuntu 22.04"
-    "Release"     = "Latest"
-    "Created-by"  = "Packer"
+    "Name"        = "Multi-region-Ubuntu-AMI" // Tag for the AMI name
+    "Environment" = "Production"              // Tag for environment
+    "OS_Version"  = "Ubuntu 22.04"            // Tag for OS version
+    "Release"     = "Latest"                  // Tag for release
+    "Created-by"  = "Packer"                  // Tag to indicate AMI was created by Packer
   }
 }
 
 build {
   sources = [
-    "source.amazon-ebs.ubuntu"
+    "source.amazon-ebs.ubuntu" // Reference to the source block above
   ]
 
-  # System updates and software installation
   provisioner "shell" {
     inline = [
-      "echo 'Installing Updates'",
-      "sudo apt-get update",
-      "sudo apt-get upgrade -y",
-      "sudo apt-get install -y nginx"
+      "echo Installing Updates",           // Print message to the console
+      "sudo apt-get update",               // Update package lists
+      "sudo apt-get upgrade -y",           // Upgrade installed packages
+      "sudo apt-get install -y nginx"      // Install nginx web server
     ]
+    // No errors here, but if you want to run additional scripts, add more commands or provisioners.
   }
 
-  # Manifest post-processor to track artifacts
-  post-processor "manifest" {
-    output = "packer-manifest.json"
-    strip_path = true
-  }
+  post-processor "manifest" {} // Generates a manifest file after build
 }
+
+// No syntax errors found. 
+// If you want to copy files or run additional scripts, add file or shell provisioners.
+
 ```
 
 ### Key Configuration Options:
@@ -144,11 +143,16 @@ build {
 Always ensure your template is properly formatted and valid:
 
 ```bash
-packer fmt aws-ubuntu01.pkr.hcl 
-packer validate aws-ubuntu01.pkr.hcl
+packer fmt packer-image.pkr.hcl  
+packer validate packer-image.pkr.hcl  
 ```
 
 ✅ **Expected Output**: `The configuration is valid.`
+
+
+<img width="851" height="95" alt="image" src="https://github.com/user-attachments/assets/d3e22b76-8aa1-4c2f-9d28-361bf62b250a" />
+
+
 
 ### Step 2.2: Verify Template Structure
 
@@ -167,25 +171,15 @@ Your template now includes:
 Run the build command to create your AMI with manifest tracking:
 
 ```bash
-packer build aws-ubuntu01.pkr.hcl
+packer build packer-image.pkr.hcl  
 ```
 
 ### Step 3.2: Verify Manifest Creation
 
 After the build completes, check for the manifest file:
 
-```bash
-ls -la
-```
+<img width="598" height="281" alt="image" src="https://github.com/user-attachments/assets/592d4e56-3d19-4323-9227-c9f28c41d920" />
 
-**Expected Output:**
-```bash
-total 16
-drwxr-xr-x  4 user  staff   128 Dec 15 10:30 .
-drwxr-xr-x  8 user  staff   256 Dec 15 10:25 ..
--rw-r--r--  1 user  staff  1234 Dec 15 10:30 aws-ubuntu01.pkr.hcl
--rw-r--r--  1 user  staff   654 Dec 15 10:30 packer-manifest.json
-```
 
 ✅ **Success Indicator**: The `packer-manifest.json` file should be present
 
@@ -204,14 +198,14 @@ cat packer-manifest.json
     {
       "name": "ubuntu",
       "builder_type": "amazon-ebs",
-      "build_time": 1702647123,
+      "build_time": 1755192522,
       "files": null,
-      "artifact_id": "eu-central-1:ami-0b70b458400c49bb3,us-east-1:ami-00c645bf39a7a66c2,us-west-2:ami-03b71c51298c1dc68",
-      "packer_run_uuid": "136c7fbe-248e-d454-3f7a-ea39c873792e",
+      "artifact_id": "us-east-1:ami-0e2c1a9d5e7841d79",
+      "packer_run_uuid": "fd1b29a2-296d-66cf-7489-af3e90190be7",
       "custom_data": null
     }
   ],
-  "last_run_uuid": "136c7fbe-248e-d454-3f7a-ea39c873792e"
+  "last_run_uuid": "fd1b29a2-296d-66cf-7489-af3e90190be7"
 }
 ```
 
@@ -221,10 +215,10 @@ cat packer-manifest.json
 |-------|-------------|---------------|
 | **`name`** | Build name from source block | `"ubuntu"` |
 | **`builder_type`** | Type of builder used | `"amazon-ebs"` |
-| **`build_time`** | Unix timestamp of build completion | `1702647123` |
+| **`build_time`** | Unix timestamp of build completion | `1755192522` |
 | **`files`** | Local files created (null for AMIs) | `null` |
-| **`artifact_id`** | Comma-separated list of created AMI IDs | `"region:ami-id,region:ami-id"` |
-| **`packer_run_uuid`** | Unique identifier for this build run | `"136c7fbe-248e-d454-3f7a-ea39c873792e"` |
+| **`artifact_id`** | Comma-separated list of created AMI IDs | `"us-east-1:ami-0e2c1a9d5e7841d79"` |
+| **`packer_run_uuid`** | Unique identifier for this build run | `"fd1b29a2-296d-66cf-7489-af3e90190be7"` |
 | **`custom_data`** | User-defined metadata | `null` |
 
 ---
@@ -298,7 +292,7 @@ echo "ami_id = \"$(jq -r '.builds[0].artifact_id' packer-manifest.json | cut -d'
 
 ### 3. **Build Verification**
 
-Verify successful multi-region deployment:
+Verify successful multi-region deployment (If the AMI is deployed in multi-region):
 
 ```bash
 # Count created AMIs
