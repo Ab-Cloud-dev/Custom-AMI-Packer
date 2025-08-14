@@ -1,3 +1,13 @@
+# First Download the Packer 
+
+https://developer.hashicorp.com/packer/install
+
+# Make Sure the Packer is install 
+
+
+<img width="636" height="107" alt="image" src="https://github.com/user-attachments/assets/2171179f-3dec-41b3-80d4-66624ae30326" />
+
+
 # Lab: Write a Packer Template
 
 
@@ -10,8 +20,7 @@ Duration: 30 minutes
 - Task 3: Create a Builder Block
 - Task 4: Build a new Image using Packer
 
-## Creating a Packer Template
-
+## Creating a Packer Template (optional)
 ```bash
 mkdir packer_templates
 cd packer_templates
@@ -22,7 +31,7 @@ Source blocks define what kind of virtualization to use for the image, how to la
 
 ### Step 1.1.1
 
-Create a `aws-ubuntu.pkr.hcl` file with the following Packer `source` block and `required_plugins`.
+Create a `aws-ubuntu01.pkr.hcl` file with the following Packer `source` block and `required_plugins`.
 
 ```hcl
 packer {
@@ -154,3 +163,4 @@ us-west-2: ami-0561bdc79bbb8f5a0
 ##### Resources
 * Packer [Docs](https://www.packer.io/docs/index.html)
 * Packer [CLI](https://www.packer.io/docs/commands/index.html)
+
