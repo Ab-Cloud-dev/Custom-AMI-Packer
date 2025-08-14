@@ -42,7 +42,7 @@ This lab consists of four main tasks:
 
 ## Getting Started
 
-### Create Project Directory
+### Create Project Directory (Optional)
 
 ```bash
 mkdir packer_templates
@@ -219,6 +219,9 @@ The build will proceed through several phases:
 🎉 **Success**: Upon completion, you'll have a new custom AMI in your AWS account!
 
 ![Packer Build Process](https://github.com/user-attachments/assets/4fab8f33-8741-4586-acc6-461d998dda98)
+
+
+<img width="1914" height="709" alt="image" src="https://github.com/user-attachments/assets/c8aba6b6-0c94-493f-a5e8-4c2635fd95bd" />
 
 ---
 
