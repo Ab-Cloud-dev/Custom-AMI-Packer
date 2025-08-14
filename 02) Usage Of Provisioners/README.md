@@ -151,7 +151,7 @@ The build will proceed through these phases:
 <summary>📋 View Sample Build Output</summary>
 
 
-div class="scroll-container">
+<div class="scroll-container">
     <pre>
         // Your long code snippet here
         // ... lots of lines ...
