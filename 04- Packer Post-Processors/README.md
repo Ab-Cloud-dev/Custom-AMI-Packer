@@ -450,6 +450,3 @@ Now that you've mastered post-processors, consider exploring:
 
 Found an issue or want to improve this lab? Please open an issue or submit a pull request!
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
