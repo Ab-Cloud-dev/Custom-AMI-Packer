@@ -1,4 +1,6 @@
 # Lab: Write a Packer Template
+
+
 This lab will walk you through updating a Packer HCL Template. It uses the amazon-ebs source to create a custom image in the us-west-2 region of AWS.
 
 Duration: 30 minutes
