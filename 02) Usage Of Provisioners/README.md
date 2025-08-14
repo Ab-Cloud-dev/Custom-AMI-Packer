@@ -147,7 +147,7 @@ The build will proceed through these phases:
 7. **🏷️ Tagging**: Applies tags to all AMIs and snapshots
 8. **🧹 Cleanup**: Terminates temporary resources
 
-<details>
+
 <summary>📋 View Sample Build Output</summary>
 
 
