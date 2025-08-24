@@ -35,14 +35,14 @@ The default method for transferring Ansible modules can fail due to SFTP issues,
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone <   git clone [<yo(https://github.com/Ab-Cloud-dev/Custom-AMI-Packer)>
    cd <repo-name>
    ```
 
-2. **Configure your AWS credentials:**
-   ```bash
-   aws configure
-   ```
+2. **Configure your AWS credentials by using environmental variables:**
+
+<img width="1582" height="162" alt="image" src="https://github.com/user-attachments/assets/fc2342f1-32a7-4b79-ab9f-42ba7ce50917" />
+
 
 3. **Update the key pair reference in `packer.pkr.hcl`** to match your AWS key pair name.
 
@@ -51,14 +51,40 @@ The default method for transferring Ansible modules can fail due to SFTP issues,
    packer init .
    ```
 
+
 5. **Build the AMI:**
-   ```bash
-   PACKER_LOG=1 packer build packer.pkr.hcl
-   ```
+   
+```bash
+   
+packer build packer.pkr.hcl
+
+```
+
+<img width="2000" height="477" alt="image" src="https://github.com/user-attachments/assets/2c61ceb2-1634-43cb-86c0-54c792c838b8" />
+
+
+<img width="2000" height="663" alt="image" src="https://github.com/user-attachments/assets/fc4dbbb2-51a7-4997-bc75-8af00800072d" />
+
+
+
 
 6. **Validate the build:**
    - Launch a new EC2 instance using the generated AMI
    - Verify that `/home/ubuntu/hello.txt` exists
+
+
+<img width="1706" height="643" alt="image" src="https://github.com/user-attachments/assets/7a5ed261-14ad-497d-8b09-73b4bb8dd4cc" />
+
+
+<img width="2000" height="427" alt="image" src="https://github.com/user-attachments/assets/aede49aa-8d96-4c3a-b87d-196d9ceea4d5" />
+
+
+<img width="2000" height="980" alt="image" src="https://github.com/user-attachments/assets/f6601614-f936-4d81-b1a9-91c0a08c360a" />
+
+
+<img width="1469" height="561" alt="image" src="https://github.com/user-attachments/assets/27852bd3-c8bf-48fc-b9dd-b79a6406fc83" />
+
+
 
 ## 🔧 Configuration Files
 
@@ -129,9 +155,7 @@ PACKER_LOG=1 packer build packer.pkr.hcl
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🔗 References
 
