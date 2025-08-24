@@ -12,5 +12,17 @@ This lab demonstrates how to use Packer provisioners to install software, config
 
 Provision Custom Web App AMI
 
-## Lab03: Deploying Custom Web Application Using Packer Provisioners
+## Lab03: Baking Web App in Custom AMI Using Packer
 
+Automating the installation of webapp into AMI, so it can reused.
+
+
+## Lab 04: Packer Post-Processors - Artifact Management and Tracking
+This lab demonstrates how to use Packer post-processors to manage and track artifacts created during the build process. Post-processors run after the image is built and provisioned, providing capabilities for artifact management, documentation, and distribution.
+
+## Lab05:  Packer + Ansible AWS AMI Builder
+
+A robust, automated workflow for building customized Ubuntu AMIs using Packer and Ansible. This project demonstrates infrastructure-as-code best practices with immutable infrastructure principles.
+
+## Lab06 Packer + Ansible AWS AMI Builder (Basic Hardening)
+A streamlined workflow for building customised Ubuntu AMIs using Packer and Ansible with basic security hardening. This project demonstrates infrastructure-as-code best practices ::Basic SSH security hardening, Custom file deployment, Automated provisioning using Ansible
