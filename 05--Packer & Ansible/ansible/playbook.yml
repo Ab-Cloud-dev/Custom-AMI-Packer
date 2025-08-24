@@ -1,0 +1,13 @@
+---
+- name: Test configuration on Ubuntu AMI
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create test file
+      copy:
+        content: "Hello from Ansible!"
+        dest: /home/ubuntu/hello.txt
+        owner: ubuntu
+        group: ubuntu
+        mode: "0644"
