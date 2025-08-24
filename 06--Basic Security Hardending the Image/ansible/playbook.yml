@@ -1,0 +1,35 @@
+---
+- name: Configure Ubuntu EC2 instance for AMI
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create helloworld.txt in /home/ubuntu
+      copy:
+        content: "Hello, World!"
+        dest: /home/ubuntu/helloworld.txt
+        owner: ubuntu
+        group: ubuntu
+        mode: "0644"
+    
+    # Basic hardening without collections
+    - name: Disable root login via SSH
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: 'PermitRootLogin no'
+        backup: yes
+      notify: restart ssh
+    
+    - name: Set password authentication to no
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+        backup: yes
+      notify: restart ssh
+  
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
