@@ -46,39 +46,12 @@ This project creates immutable AMIs with:
 
 ### 1. Clone and Setup
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Ab-Cloud-dev/Custom-AMI-Packer
 cd packer-ansible-basic-hardening
 ```
 
-### 2. Configure AWS Settings
-Edit `packer.pkr.hcl` and update these variables:
-```hcl
-variable "region" {
-  default = "us-east-1"  # Your preferred region
-}
 
-variable "source_ami" {
-  default = "ami-0c02fb55956c7d316"  # Latest Ubuntu 22.04 LTS
-}
-
-variable "subnet_id" {
-  default = "subnet-xxxxxxxxx"  # Your subnet ID
-}
-
-variable "security_group_id" {
-  default = "sg-xxxxxxxxx"  # Your security group ID
-}
-
-variable "ssh_keypair_name" {
-  default = "your-key-pair"  # Your EC2 key pair name
-}
-
-variable "ssh_private_key_file" {
-  default = "~/.ssh/your-key-pair.pem"  # Path to your private key
-}
-```
-
-### 3. Initialize and Build
+### 2. Initialize and Build
 ```bash
 # Initialize Packer plugins
 packer init .
@@ -113,7 +86,7 @@ chmod +x scripts/validate.sh
 - Removes package caches and temporary files
 - Optimizes AMI size
 
-## 📝 Configuration Files
+## 📝 Configuration Files (Not required in this case)
 
 ### `ansible.cfg`
 ```ini
@@ -181,11 +154,24 @@ Run the included validation script:
 ```
 
 ### Manual Validation Steps
+
+<img width="1522" height="401" alt="image" src="https://github.com/user-attachments/assets/1ac93d24-0717-4e5e-83c3-b0098a54ebb7" />
+
+<img width="2000" height="324" alt="image" src="https://github.com/user-attachments/assets/17e670d4-d1e6-4391-b90c-926101995568" />
+
+
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/2fe9750a-db15-4f93-9674-a5892135dfad" />
+
+
 1. **File Verification**:
    ```bash
    ls -la /home/ubuntu/helloworld.txt
    cat /home/ubuntu/helloworld.txt
    ```
+
+<img width="958" height="262" alt="image" src="https://github.com/user-attachments/assets/9fd7e8e3-cbfb-43b4-a7e1-8a7cead30f37" />
+
+
 
 2. **SSH Hardening Check**:
    ```bash
@@ -197,6 +183,10 @@ Run the included validation script:
    # This should fail (good!)
    ssh -o PreferredAuthentications=password root@localhost
    ```
+
+   
+<img width="1822" height="555" alt="image" src="https://github.com/user-attachments/assets/3ded6970-a08a-4015-ad1b-54dce26b1565" />
+
 
 ### Expected Results
 - ✅ `helloworld.txt` exists with timestamp
