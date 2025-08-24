@@ -25,8 +25,7 @@ This project creates immutable AMIs with:
 ├── ansible/
 │   └── playbooks/
 │       └── main.yml        # Basic hardening playbook
-├── scripts/
-│   └── validate.sh         # AMI validation script
+
 └── README.md               # This documentation
 ```
 
@@ -146,12 +145,7 @@ pipelining = False
 
 ## ✅ Validation & Testing
 
-### Automated Validation
-Run the included validation script:
-```bash
-# On your new instance
-./scripts/validate.sh
-```
+
 
 ### Manual Validation Steps
 
@@ -273,9 +267,7 @@ ansible-playbook -i <instance-ip>, -u ubuntu --private-key ~/.ssh/your-key.pem a
 5. Push to branch: `git push origin feature/amazing-feature`
 6. Open a Pull Request
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🔗 Useful Resources
 
