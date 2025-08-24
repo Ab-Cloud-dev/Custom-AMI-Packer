@@ -1,4 +1,4 @@
-# Lab 03: Packer Post-Processors - Artifact Management and Tracking
+# Lab 04: Packer Post-Processors - Artifact Management and Tracking
 
 This lab demonstrates how to use Packer post-processors to manage and track artifacts created during the build process. Post-processors run after the image is built and provisioned, providing capabilities for artifact management, documentation, and distribution.
 
