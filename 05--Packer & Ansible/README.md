@@ -1,6 +1,6 @@
 # Packer + Ansible AWS AMI Builder
 
-A robust, automated workflow for building customized Ubuntu AMIs using Packer and Ansible. This project demonstrates infrastructure-as-code best practices with immutable infrastructure principles, making it perfect for professional DevOps portfolios.
+A robust, automated workflow for building customized Ubuntu AMIs using Packer and Ansible. This project demonstrates infrastructure-as-code best practices with immutable infrastructure principles.
 
 ## 🌟 Why This Approach Works
 
